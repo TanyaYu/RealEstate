@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">Real estate catalog</string>
-    <string name="price_kilo_description">%1$,.0f k rub</string>
-    <string name="price_description">%1$,.2f rub</string>
+    <string name="rub">rub</string>
+    <string name="square_meters">sq.m.</string>
+    <string name="rub_per_square_meters">rub/sq.m.</string>
+    <string name="kilo">k</string>
+    <string name="floor">floor</string>
     <string name="address_description"><![CDATA[%1$s - <b>%2$.0f sq.m</b>]]></string>
 
     <string name="activity_real_estate_list_title">Real estate catalog</string>
     <string name="image_description_real_estate">Real estate</string>
     <string name="action_logout">Logout</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_back">Back</string>
 
 </resources>

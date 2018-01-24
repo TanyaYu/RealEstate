@@ -8,4 +8,9 @@
     <dimen name="item_real_estate_description_horizontal_padding">5dp</dimen>
     <dimen name="item_real_estate_vertical_margin">3dp</dimen>
     <dimen name="item_real_estate_horizontal_margin">6dp</dimen>
+
+    <dimen name="fragment_real_estate_details_photo_height">250dp</dimen>
+    <dimen name="fragment_real_estate_details_action_icons_size">36dp</dimen>
+    <dimen name="fragment_real_estate_details_action_icons_margin">6dp</dimen>
+    <dimen name="fragment_real_estate_details_price_text_size">38sp</dimen>
 </resources>

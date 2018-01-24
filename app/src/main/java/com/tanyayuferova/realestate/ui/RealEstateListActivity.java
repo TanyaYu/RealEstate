@@ -1,6 +1,8 @@
 package com.tanyayuferova.realestate.ui;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,9 @@ import com.tanyayuferova.realestate.Constants;
 import com.tanyayuferova.realestate.R;
 import com.tanyayuferova.realestate.databinding.ActivityRealEstateListBinding;
 import com.tanyayuferova.realestate.entity.RealEstate;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RealEstateListActivity extends AppCompatActivity
         implements RealEstateAdapter.OnClickRealEstateHandler,
@@ -53,7 +58,11 @@ public class RealEstateListActivity extends AppCompatActivity
 
     @Override
     public void onClickRealEstate(View view, RealEstate realEstate) {
-
+        List<RealEstate> data = adapter.getData();
+        Intent intent = new Intent(this, RealEstateDetailsActivity.class);
+        intent.putParcelableArrayListExtra(RealEstateDetailsActivity.EXTRA_REAL_ESTATE_DATA, new ArrayList<Parcelable>(data));
+        intent.putExtra(RealEstateDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(realEstate));
+        startActivity(intent);
     }
 
     @Override
@@ -86,7 +95,9 @@ public class RealEstateListActivity extends AppCompatActivity
 
     @Override
     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        adapter.addItem(dataSnapshot.getValue(RealEstate.class));
+        RealEstate item = dataSnapshot.getValue(RealEstate.class);
+        item.setKey(dataSnapshot.getKey());
+        adapter.addItem(item);
     }
 
     @Override

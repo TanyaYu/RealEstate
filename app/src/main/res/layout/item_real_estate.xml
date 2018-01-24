@@ -12,6 +12,7 @@
             name="context"
             type="android.content.Context"/>
         <import type="android.text.Html" />
+        <import type="com.tanyayuferova.realestate.utils.NumbersFormatUtils" />
 
     </data>
 
@@ -54,7 +55,7 @@
                 android:background="@color/darkBackground"
                 android:paddingEnd="@dimen/item_real_estate_description_horizontal_padding"
                 android:paddingStart="@dimen/item_real_estate_description_horizontal_padding"
-                android:text="@{Html.fromHtml(String.format(@string/address_description, item.address, item.area))}"
+                android:text="@{Html.fromHtml(@string/address_description(item.address, item.area))}"
                 android:textColor="@color/primaryTextInverse"
                 android:textSize="@dimen/item_real_estate_description_text_size"
                 app:layout_constraintBottom_toTopOf="@id/tv_price"
@@ -69,7 +70,7 @@
                 android:background="@color/darkBackground"
                 android:paddingEnd="@dimen/item_real_estate_description_horizontal_padding"
                 android:paddingStart="@dimen/item_real_estate_description_horizontal_padding"
-                android:text="@{item.getPriceShortDescription(context)}"
+                android:text='@{NumbersFormatUtils.numberToShortDescription(item.price, context) + " " + @string/rub}'
                 android:textColor="@color/primaryTextInverse"
                 android:textSize="@dimen/item_real_estate_price_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/iv_photo"

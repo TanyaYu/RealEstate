@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="numberOfRooms">
+        <item quantity="one">комната</item>
+        <item quantity="few">комнаты</item>
+        <item quantity="many">комнат</item>
+        <item quantity="other">комнат</item>
+    </plurals>
+</resources>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
@@ -13,5 +13,9 @@
     <style name="ToolbarStyle" parent="ThemeOverlay.AppCompat.ActionBar">
         <item name="android:textColorPrimary">?android:textColorPrimaryInverse</item>
         <item name="android:actionMenuTextColor">?android:textColorPrimary</item>
+    </style>
+
+    <style name="AppTheme.TranparentStausBar" parent="AppTheme">
+        <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
     </style>
 </resources>

@@ -1,10 +1,7 @@
 package com.tanyayuferova.realestate.entity;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.tanyayuferova.realestate.R;
 
 /**
  * Created by Tanya Yuferova on 1/24/2018.
@@ -12,12 +9,13 @@ import com.tanyayuferova.realestate.R;
 
 public class RealEstate implements Parcelable {
 
-    private String address;
+    private String address; //TODO Address should be diverse entity
     private double area;
     private double price;
     private int roomsCount;
     private int floor;
     private String photo;
+    private String key;
 
     public RealEstate() {
     }
@@ -70,11 +68,19 @@ public class RealEstate implements Parcelable {
         this.photo = photo;
     }
 
-    public String getPriceShortDescription(Context context) {
-        if(price%1000 == 0)
-            // we don't want to display a lot of zeros
-            return context.getString(R.string.price_kilo_description, price/1000);
-        return context.getString(R.string.price_description, price);
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof RealEstate)
+            return ((RealEstate) obj).getKey().equals(this.getKey());
+        return super.equals(obj);
     }
 
     @Override
@@ -95,9 +101,10 @@ public class RealEstate implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        String[] strings = new String[2];
+        String[] strings = new String[3];
         strings[0] = address;
         strings[1] = photo;
+        strings[2] = key;
         parcel.writeStringArray(strings);
 
         double[] doubles = new double[2];
@@ -112,10 +119,11 @@ public class RealEstate implements Parcelable {
     }
 
     private RealEstate(Parcel parcel) {
-        String[] strings = new String[2];
+        String[] strings = new String[3];
         parcel.readStringArray(strings);
         address = strings[0];
         photo = strings[1];
+        key = strings[2];
 
         double[] doubles = new double[2];
         parcel.readDoubleArray(doubles);

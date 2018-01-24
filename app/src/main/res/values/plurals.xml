@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <plurals name="numberOfRooms">
+        <item quantity="one">room</item>
+        <item quantity="other">rooms</item>
+    </plurals>
+</resources>
