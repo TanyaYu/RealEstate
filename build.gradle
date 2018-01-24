@@ -3,6 +3,7 @@
 buildscript {
 
     ext.support_version = '26.1.0'
+    ext.firebase_version = '11.8.0'
 
     repositories {
         google()

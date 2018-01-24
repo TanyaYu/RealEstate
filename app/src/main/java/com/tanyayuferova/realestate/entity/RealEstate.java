@@ -17,6 +17,7 @@ public class RealEstate implements Parcelable {
     private double price;
     private int roomsCount;
     private int floor;
+    private String photo;
 
     public RealEstate() {
     }
@@ -61,6 +62,14 @@ public class RealEstate implements Parcelable {
         this.floor = floor;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     public String getPriceShortDescription(Context context) {
         if(price%1000 == 0)
             // we don't want to display a lot of zeros
@@ -86,7 +95,10 @@ public class RealEstate implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeString(address);
+        String[] strings = new String[2];
+        strings[0] = address;
+        strings[1] = photo;
+        parcel.writeStringArray(strings);
 
         double[] doubles = new double[2];
         doubles[0] = area;
@@ -100,7 +112,10 @@ public class RealEstate implements Parcelable {
     }
 
     private RealEstate(Parcel parcel) {
-        address = parcel.readString();
+        String[] strings = new String[2];
+        parcel.readStringArray(strings);
+        address = strings[0];
+        photo = strings[1];
 
         double[] doubles = new double[2];
         parcel.readDoubleArray(doubles);

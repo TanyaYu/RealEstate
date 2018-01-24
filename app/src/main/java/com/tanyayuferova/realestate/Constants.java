@@ -8,5 +8,6 @@ public interface Constants {
 
     interface Database {
         public final String REAL_ESTATES_REFERENCE = "real_estates";
+        public final String REAL_ESTATES_PHOTOS_STORAGE = "real_estate_photos";
     }
 }
