@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Каталог недвижимости</string>
+    <string name="price_kilo_description">%1$,.0f тыс. руб.</string>
+    <string name="price_description">%1$,.2f руб.</string>
+    <string name="address_description"><![CDATA[%1$s - <b>%2$.0f кв.м.</b>]]></string>
+
+    <string name="activity_real_estate_list_title">Каталог недвижимости</string>
+    <string name="image_description_real_estate">Недвижимость</string>
+    <string name="action_logout">Выход</string>
+</resources>
