@@ -7,7 +7,6 @@
     <string name="floor">этаж</string>
     <string name="rub_per_square_meters">руб/кв.м.</string>
     <string name="address_description"><![CDATA[%1$s - <b>%2$.0f кв.м.</b>]]></string>
-
     <string name="activity_real_estate_list_title">Каталог недвижимости</string>
     <string name="image_description_real_estate">Недвижимость</string>
     <string name="action_logout">Выход</string>

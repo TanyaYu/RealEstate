@@ -42,7 +42,6 @@ public class RealEstateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         public void bind(RealEstate item) {
             binding.setItem(item);
-            binding.setContext(binding.getRoot().getContext());
             binding.getRoot().setOnClickListener(this);
         }
 

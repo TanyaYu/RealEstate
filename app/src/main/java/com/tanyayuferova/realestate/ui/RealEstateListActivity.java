@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +46,7 @@ public class RealEstateListActivity extends AppCompatActivity
         adapter = new RealEstateAdapter(this);
         binding.recyclerView.setAdapter(adapter);
         binding.recyclerView.setHasFixedSize(true);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.columns_count)));
 
         database = FirebaseDatabase.getInstance();
         realEstateReference = database.getReference().child(Constants.Database.REAL_ESTATES_REFERENCE);

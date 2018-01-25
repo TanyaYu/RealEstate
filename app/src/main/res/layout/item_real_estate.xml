@@ -8,11 +8,7 @@
         <variable
             name="item"
             type="com.tanyayuferova.realestate.entity.RealEstate" />
-        <variable
-            name="context"
-            type="android.content.Context"/>
         <import type="android.text.Html" />
-        <import type="com.tanyayuferova.realestate.utils.NumbersFormatUtils" />
 
     </data>
 
@@ -70,7 +66,7 @@
                 android:background="@color/darkBackground"
                 android:paddingEnd="@dimen/item_real_estate_description_horizontal_padding"
                 android:paddingStart="@dimen/item_real_estate_description_horizontal_padding"
-                android:text='@{NumbersFormatUtils.numberToShortDescription(item.price, context) + " " + @string/rub}'
+                android:text='@{String.format("%1$,.0f", item.price) + " " + @string/rub}'
                 android:textColor="@color/primaryTextInverse"
                 android:textSize="@dimen/item_real_estate_price_text_size"
                 app:layout_constraintBottom_toBottomOf="@id/iv_photo"

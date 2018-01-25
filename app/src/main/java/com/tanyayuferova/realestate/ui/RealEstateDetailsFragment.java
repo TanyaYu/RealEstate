@@ -34,7 +34,6 @@ public class RealEstateDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentRealEstateDetailsBinding.inflate(inflater, container, false);
         binding.setItem((RealEstate) getArguments().getParcelable(ARGUMENT_REAL_ESTATE_ITEM));
-        binding.setContext(getContext());
         binding.ivBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

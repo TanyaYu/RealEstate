@@ -8,12 +8,6 @@
         <variable
             name="item"
             type="com.tanyayuferova.realestate.entity.RealEstate" />
-
-        <variable
-            name="context"
-            type="android.content.Context" />
-
-        <import type="com.tanyayuferova.realestate.utils.NumbersFormatUtils" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -21,159 +15,204 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.constraint.ConstraintLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.constraint.Guideline
-                android:id="@+id/guide_line_center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_photo"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/fragment_real_estate_details_photo_height"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/image_description_real_estate"
-                android:scaleType="centerCrop"
-                app:imageUrl="@{item.photo}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:background="@android:color/darker_gray" />
+                <android.support.constraint.Guideline
+                    android:id="@+id/guide_line_center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4" />
 
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:text='@{NumbersFormatUtils.numberToShortDescription(item.price, context) + " " + @string/rub}'
-                android:textAlignment="center"
-                android:textSize="@dimen/fragment_real_estate_details_price_text_size"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_photo"
-                tools:text="4000 k rub" />
+                <ImageView
+                    android:id="@+id/iv_photo"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/fragment_real_estate_details_photo_height"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/image_description_real_estate"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{item.photo}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@{item.address}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_price"
-                tools:text="Tyumen, Lenina street 45/1, Apt. 93." />
+                <TextView
+                    android:id="@+id/tv_price"
+                    style="@style/FragmentRealEstateNumbersStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_content_padding"
+                    android:text='@{String.format("%1$,.0f", item.price) + " " + @string/rub}'
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_photo"
+                    tools:text="4000 k rub" />
 
-            <TextView
-                android:id="@+id/tv_area"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:maxLines="1"
-                android:text='@{String.format("%1$,.0f", item.area)}'
-                android:textSize="@dimen/fragment_real_estate_details_price_text_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_address"
-                tools:text="80" />
+                <ImageView
+                    android:id="@+id/iv_home_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_content_padding"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_address"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_address"
+                    app:srcCompat="@drawable/ic_home_dark" />
 
-            <TextView
-                android:id="@+id/tv_sqm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/square_meters"
-                app:layout_constraintBottom_toBottomOf="@id/tv_area"
-                app:layout_constraintEnd_toEndOf="@id/guide_line_center"
-                app:layout_constraintStart_toEndOf="@id/tv_area"
-                app:layout_constraintTop_toTopOf="@id/tv_area" />
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingRight="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingTop="@dimen/fragment_real_estate_details_inner_padding"
+                    android:text="@{item.address}"
+                    android:textColor="@color/secondaryText"
+                    android:textSize="@dimen/fragment_real_estate_address_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_home_icon"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price"
+                    tools:text="Tyumen, Lenina street 45/1, Apt. 93." />
 
-            <TextView
-                android:id="@+id/tv_price_per_sqm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:maxLines="1"
-                android:text='@{String.format("%1$,.0f", item.price/item.area)}'
-                android:textSize="@dimen/fragment_real_estate_details_price_text_size"
-                app:layout_constraintStart_toEndOf="@id/guide_line_center"
-                app:layout_constraintTop_toBottomOf="@id/tv_address"
-                tools:text="50k" />
+                <TextView
+                    android:id="@+id/tv_area"
+                    style="@style/FragmentRealEstateNumbersStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_content_padding"
+                    android:text='@{String.format("%1$,.0f", item.area)}'
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_address"
+                    tools:text="80" />
 
-            <TextView
-                android:id="@+id/tv_rubsqm"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/rub_per_square_meters"
-                app:layout_constraintBottom_toBottomOf="@id/tv_price_per_sqm"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_price_per_sqm"
-                app:layout_constraintTop_toTopOf="@id/tv_price_per_sqm" />
+                <TextView
+                    android:id="@+id/tv_sqm"
+                    style="@style/FragmentRealEstateNumbersCaptionStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_inner_padding"
+                    android:text="@string/square_meters"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_area"
+                    app:layout_constraintEnd_toEndOf="@id/guide_line_center"
+                    app:layout_constraintStart_toEndOf="@id/tv_area"
+                    app:layout_constraintTop_toTopOf="@id/tv_area" />
 
-            <TextView
-                android:id="@+id/tv_rooms_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:maxLines="1"
-                android:text='@{String.valueOf(item.roomsCount)}'
-                android:textSize="@dimen/fragment_real_estate_details_price_text_size"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_area"
-                tools:text="2" />
+                <TextView
+                    android:id="@+id/tv_price_per_sqm"
+                    style="@style/FragmentRealEstateNumbersStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text='@{String.format("%1$,.0f", item.price/item.area)}'
+                    app:layout_constraintStart_toEndOf="@id/guide_line_center"
+                    app:layout_constraintTop_toBottomOf="@id/tv_address"
+                    tools:text="50 000" />
 
-            <TextView
-                android:id="@+id/tv_rooms"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@{@plurals/numberOfRooms(item.roomsCount)}"
-                app:layout_constraintBottom_toBottomOf="@id/tv_rooms_count"
-                app:layout_constraintEnd_toStartOf="@id/guide_line_center"
-                app:layout_constraintStart_toEndOf="@id/tv_rooms_count"
-                app:layout_constraintTop_toTopOf="@id/tv_rooms_count"
-                tools:text="rooms" />
+                <TextView
+                    android:id="@+id/tv_rubsqm"
+                    style="@style/FragmentRealEstateNumbersCaptionStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingRight="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_inner_padding"
+                    android:text="@string/rub_per_square_meters"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_price_per_sqm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_price_per_sqm"
+                    app:layout_constraintTop_toTopOf="@id/tv_price_per_sqm" />
 
-            <TextView
-                android:id="@+id/tv_floor_value"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:maxLines="1"
-                android:text='@{String.valueOf(item.floor)}'
-                android:textSize="@dimen/fragment_real_estate_details_price_text_size"
-                app:layout_constraintStart_toEndOf="@id/guide_line_center"
-                app:layout_constraintTop_toBottomOf="@id/tv_price_per_sqm"
-                tools:text="5" />
+                <TextView
+                    android:id="@+id/tv_rooms_count"
+                    style="@style/FragmentRealEstateNumbersStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_content_padding"
+                    android:text='@{String.valueOf(item.roomsCount)}'
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toStartOf="@id/tv_rooms"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_area"
+                    tools:text="2" />
 
-            <TextView
-                android:id="@+id/tv_floor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/floor"
-                app:layout_constraintBottom_toBottomOf="@id/tv_floor_value"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_floor_value"
-                app:layout_constraintTop_toTopOf="@id/tv_floor_value" />
+                <TextView
+                    android:id="@+id/tv_rooms"
+                    style="@style/FragmentRealEstateNumbersCaptionStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_inner_padding"
+                    android:text="@{@plurals/numberOfRooms(item.roomsCount)}"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_rooms_count"
+                    app:layout_constraintEnd_toStartOf="@id/guide_line_center"
+                    app:layout_constraintStart_toStartOf="@id/tv_sqm"
+                    app:layout_constraintTop_toTopOf="@id/tv_rooms_count"
+                    tools:text="rooms" />
 
-        </android.support.constraint.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_floor_value"
+                    style="@style/FragmentRealEstateNumbersStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:maxLines="1"
+                    android:text='@{String.valueOf(item.floor)}'
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toStartOf="@id/tv_floor"
+                    app:layout_constraintStart_toEndOf="@id/guide_line_center"
+                    app:layout_constraintTop_toBottomOf="@id/tv_price_per_sqm"
+                    tools:text="5" />
+
+                <TextView
+                    android:id="@+id/tv_floor"
+                    style="@style/FragmentRealEstateNumbersCaptionStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingLeft="@dimen/fragment_real_estate_details_inner_padding"
+                    android:paddingRight="@dimen/fragment_real_estate_details_content_padding"
+                    android:paddingStart="@dimen/fragment_real_estate_details_inner_padding"
+                    android:text="@string/floor"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_floor_value"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tv_rubsqm"
+                    app:layout_constraintTop_toTopOf="@id/tv_floor_value" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v4.widget.NestedScrollView>
 
         <ImageView
             android:id="@+id/iv_back"
             android:layout_width="@dimen/fragment_real_estate_details_action_icons_size"
             android:layout_height="@dimen/fragment_real_estate_details_action_icons_size"
             android:layout_gravity="start|top"
-            android:layout_margin="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginLeft="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginStart="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginTop="@dimen/fragment_real_estate_details_action_icons_top_margin"
+            android:background="@drawable/round_dark_back_ground"
+            android:clickable="true"
             android:contentDescription="@string/action_back"
+            android:focusable="true"
+            android:padding="@dimen/fragment_real_estate_details_action_icons_padding"
             app:srcCompat="@drawable/ic_arrow_back" />
 
         <ImageView
@@ -181,8 +220,14 @@
             android:layout_width="@dimen/fragment_real_estate_details_action_icons_size"
             android:layout_height="@dimen/fragment_real_estate_details_action_icons_size"
             android:layout_gravity="end|top"
-            android:layout_margin="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginEnd="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginRight="@dimen/fragment_real_estate_details_action_icons_margin"
+            android:layout_marginTop="@dimen/fragment_real_estate_details_action_icons_top_margin"
+            android:background="@drawable/round_dark_back_ground"
+            android:clickable="true"
             android:contentDescription="@string/action_edit"
+            android:focusable="true"
+            android:padding="@dimen/fragment_real_estate_details_action_icons_padding"
             app:srcCompat="@drawable/ic_edit" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>
