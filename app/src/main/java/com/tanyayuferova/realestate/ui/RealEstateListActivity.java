@@ -3,15 +3,18 @@ package com.tanyayuferova.realestate.ui;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,14 +31,19 @@ import java.util.List;
 
 public class RealEstateListActivity extends AppCompatActivity
         implements RealEstateAdapter.OnClickRealEstateHandler,
-        ChildEventListener,
-        ValueEventListener ,
         SwipeRefreshLayout.OnRefreshListener{
+
+    private static final int RC_SIGN_IN = 1;
 
     private ActivityRealEstateListBinding binding;
     private RealEstateAdapter adapter;
+
     private FirebaseDatabase database;
     private DatabaseReference realEstateReference;
+    private ChildEventListener childEventListener;
+    private ValueEventListener valueEventListener;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +57,38 @@ public class RealEstateListActivity extends AppCompatActivity
         binding.recyclerView.setLayoutManager(new GridLayoutManager(this, getResources().getInteger(R.integer.columns_count)));
 
         database = FirebaseDatabase.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
+
         realEstateReference = database.getReference().child(Constants.Database.REAL_ESTATES_REFERENCE);
-        realEstateReference.addChildEventListener(this);
-        realEstateReference.addListenerForSingleValueEvent(this);
+
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if(user == null) {
+                    //user is signed out
+                    onSignedOutCleanUp();
+                    startActivityForResult(
+                            AuthUI.getInstance().createSignInIntentBuilder().build(),
+                            RC_SIGN_IN);
+                } else {
+                    // user is signed in
+                    onSignedInInitialize();
+                }
+            }
+        };
 
         binding.swipeRefresh.setRefreshing(true);
         binding.swipeRefresh.setOnRefreshListener(this);
+    }
+
+    private void onSignedInInitialize() {
+        attachDatabaseReadListener();
+    }
+
+    private void onSignedOutCleanUp() {
+        adapter.clear();
+        detachDatabaseReadListener();
     }
 
     @Override
@@ -76,10 +110,26 @@ public class RealEstateListActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                // to do logout
+                AuthUI.getInstance().signOut(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(authStateListener != null) {
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
+        detachDatabaseReadListener();
+        adapter.clear();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     @Override
@@ -88,32 +138,53 @@ public class RealEstateListActivity extends AppCompatActivity
         binding.swipeRefresh.setRefreshing(false);
     }
 
-    @Override
-    public void onDataChange(DataSnapshot dataSnapshot) {
-        //This method is called after all the onChildAdded() calls have happened
-        binding.swipeRefresh.setRefreshing(false);
+    protected void attachDatabaseReadListener() {
+        if(childEventListener == null) {
+            childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    RealEstate item = dataSnapshot.getValue(RealEstate.class);
+                    item.setKey(dataSnapshot.getKey());
+                    adapter.addItem(item);
+                }
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+                }
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            };
+            realEstateReference.addChildEventListener(childEventListener);
+        }
+        if(valueEventListener == null) {
+            valueEventListener = new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //This method is called after all the onChildAdded() calls have happened
+                    binding.swipeRefresh.setRefreshing(false);
+                }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                }
+            };
+            realEstateReference.addListenerForSingleValueEvent(valueEventListener);
+        }
     }
 
-    @Override
-    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-        RealEstate item = dataSnapshot.getValue(RealEstate.class);
-        item.setKey(dataSnapshot.getKey());
-        adapter.addItem(item);
-    }
-
-    @Override
-    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-    }
-
-    @Override
-    public void onChildRemoved(DataSnapshot dataSnapshot) {
-    }
-
-    @Override
-    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-    }
-
-    @Override
-    public void onCancelled(DatabaseError databaseError) {
+    protected void detachDatabaseReadListener() {
+        if(childEventListener != null) {
+            realEstateReference.removeEventListener(childEventListener);
+            childEventListener = null;
+        }
+        if(valueEventListener != null) {
+            realEstateReference.removeEventListener(valueEventListener);
+            valueEventListener = null;
+        }
     }
 }

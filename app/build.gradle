@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation "com.google.firebase:firebase-database:$firebase_version"
     implementation "com.google.firebase:firebase-auth:$firebase_version"
+    implementation 'com.firebaseui:firebase-ui-auth:3.2.1'
     implementation "com.google.firebase:firebase-storage:$firebase_version"
 
     testImplementation 'junit:junit:4.12'

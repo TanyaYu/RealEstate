@@ -8,7 +8,7 @@
     <string name="address_description"><![CDATA[%1$s - <b>%2$.0f sq.m</b>]]></string>
     <string name="activity_real_estate_list_title">Real estate catalog</string>
     <string name="image_description_real_estate">Real estate</string>
-    <string name="action_logout">Logout</string>
+    <string name="action_logout">Sign out</string>
     <string name="action_edit">Edit</string>
     <string name="action_back">Back</string>
 </resources>

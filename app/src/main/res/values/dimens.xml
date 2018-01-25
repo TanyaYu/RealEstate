@@ -17,6 +17,6 @@
     <dimen name="fragment_real_estate_details_numbers_text_size">38sp</dimen>
     <dimen name="fragment_real_estate_details_content_padding">6dp</dimen>
     <dimen name="fragment_real_estate_details_inner_padding">4dp</dimen>
-    <dimen name="fragment_real_estate_numbers_caption_text_size">15sp</dimen>
+    <dimen name="fragment_real_estate_numbers_caption_text_size">14sp</dimen>
     <dimen name="fragment_real_estate_address_text_size">15sp</dimen>
 </resources>
