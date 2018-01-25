@@ -37,5 +37,22 @@
                 app:title="@string/activity_real_estate_list_title" />
 
         </android.support.design.widget.AppBarLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/activity_real_estate_list_fab_margin"
+            android:layout_marginEnd="@dimen/activity_real_estate_list_fab_margin"
+            android:layout_marginRight="@dimen/activity_real_estate_list_fab_margin"
+            android:contentDescription="@string/action_add"
+            android:elevation="@dimen/fab_elevation"
+            android:onClick="onClickAddBtn"
+            android:scaleType="center"
+            app:fabSize="normal"
+            app:layout_behavior="com.tanyayuferova.realestate.behavior.ScrollAwareFABBehavior"
+            app:pressedTranslationZ="@dimen/fab_press_translation_z"
+            app:srcCompat="@drawable/ic_add" />
     </android.support.design.widget.CoordinatorLayout>
 </layout>

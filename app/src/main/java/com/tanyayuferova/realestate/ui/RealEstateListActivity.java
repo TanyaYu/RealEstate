@@ -78,7 +78,6 @@ public class RealEstateListActivity extends AppCompatActivity
             }
         };
 
-        binding.swipeRefresh.setRefreshing(true);
         binding.swipeRefresh.setOnRefreshListener(this);
     }
 
@@ -98,6 +97,10 @@ public class RealEstateListActivity extends AppCompatActivity
         intent.putParcelableArrayListExtra(RealEstateDetailsActivity.EXTRA_REAL_ESTATE_DATA, new ArrayList<Parcelable>(data));
         intent.putExtra(RealEstateDetailsActivity.EXTRA_SELECTED_INDEX, data.indexOf(realEstate));
         startActivity(intent);
+    }
+
+    public void onClickAddBtn(View view) {
+        startActivity(new Intent(this, RealEstateEditActivity.class));
     }
 
     @Override
@@ -161,6 +164,7 @@ public class RealEstateListActivity extends AppCompatActivity
                 }
             };
             realEstateReference.addChildEventListener(childEventListener);
+            binding.swipeRefresh.setRefreshing(true);
         }
         if(valueEventListener == null) {
             valueEventListener = new ValueEventListener() {

@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Каталог недвижимости</string>
+
     <string name="rub">руб.</string>
     <string name="square_meters">кв.м.</string>
     <string name="kilo">тыс.</string>
     <string name="floor">этаж</string>
     <string name="rub_per_square_meters">руб/кв.м.</string>
     <string name="address_description"><![CDATA[%1$s - <b>%2$.0f кв.м.</b>]]></string>
+
     <string name="activity_real_estate_list_title">Каталог недвижимости</string>
+    <string name="activity_real_estate_edit_title">Изменить объект недвижимости</string>
+    <string name="activity_real_estate_add_title">Создать объект недвижимости</string>
+
     <string name="image_description_real_estate">Недвижимость</string>
+
     <string name="action_logout">Выход</string>
     <string name="action_edit">Редактировать</string>
     <string name="action_back">Назад</string>
+    <string name="action_add">Создать</string>
+    <string name="action_save">ОК</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_delete">Удалить</string>
+
+    <string name="address_caption">Адрес</string>
+    <string name="price_caption">Цена</string>
+    <string name="area_caption">Площадь</string>
+    <string name="rooms_caption">Комнаты</string>
+    <string name="floor_caption">Этаж</string>
+    <string name="photo_caption">Фото</string>
+
+    <string name="error_null_value">Поле не заполнено</string>
 </resources>

@@ -16,14 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RealEstateDetailsActivity"
-            android:theme="@style/AppTheme.TranparentStausBar"
-            android:parentActivityName=".ui.RealEstateListActivity">
+        <activity
+            android:name=".ui.RealEstateDetailsActivity"
+            android:parentActivityName=".ui.RealEstateListActivity"
+            android:theme="@style/AppTheme.TranparentStausBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.tanyayuferova.realestate.ui.RealEstateListActivity" />
-
         </activity>
+        <activity android:name=".ui.RealEstateEditActivity"></activity>
     </application>
 
 </manifest>

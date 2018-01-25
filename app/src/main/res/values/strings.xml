@@ -1,14 +1,35 @@
 <resources>
     <string name="app_name">Real estate catalog</string>
+
     <string name="rub">rub</string>
     <string name="square_meters">sq.m.</string>
     <string name="rub_per_square_meters">rub/sq.m.</string>
     <string name="kilo">k</string>
     <string name="floor">floor</string>
     <string name="address_description"><![CDATA[%1$s - <b>%2$.0f sq.m</b>]]></string>
+
     <string name="activity_real_estate_list_title">Real estate catalog</string>
+    <string name="activity_real_estate_edit_title">Edit real estate</string>
+    <string name="activity_real_estate_add_title">Create real estate</string>
+
     <string name="image_description_real_estate">Real estate</string>
+
     <string name="action_logout">Sign out</string>
     <string name="action_edit">Edit</string>
     <string name="action_back">Back</string>
+    <string name="action_add">Add</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+
+    <string name="address_caption">Address</string>
+    <string name="price_caption">Price</string>
+    <string name="area_caption">Area</string>
+    <string name="rooms_caption">Rooms</string>
+    <string name="floor_caption">Floor</string>
+    <string name="photo_caption">Photo</string>
+
+    <string name="error_null_value">Field is empty</string>
+
+    <string name="complete_action_using">Complete action using</string>
 </resources>

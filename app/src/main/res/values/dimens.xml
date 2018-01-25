@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="fab_elevation">4dp</dimen>
+    <dimen name="fab_press_translation_z">6dp</dimen>
+
+    <dimen name="activity_real_estate_list_fab_margin">16dp</dimen>
 
     <dimen name="item_real_estate_height">200dp</dimen>
     <dimen name="item_real_estate_description_text_size">15sp</dimen>
@@ -12,11 +16,16 @@
     <dimen name="fragment_real_estate_details_photo_height">250dp</dimen>
     <dimen name="fragment_real_estate_details_action_icons_size">42dp</dimen>
     <dimen name="fragment_real_estate_details_action_icons_margin">6dp</dimen>
-    <dimen name="fragment_real_estate_details_action_icons_padding">4dp</dimen>
+    <dimen name="fragment_real_estate_details_action_icons_padding">6dp</dimen>
     <dimen name="fragment_real_estate_details_action_icons_top_margin">28dp</dimen>
     <dimen name="fragment_real_estate_details_numbers_text_size">38sp</dimen>
     <dimen name="fragment_real_estate_details_content_padding">6dp</dimen>
     <dimen name="fragment_real_estate_details_inner_padding">4dp</dimen>
     <dimen name="fragment_real_estate_numbers_caption_text_size">14sp</dimen>
     <dimen name="fragment_real_estate_address_text_size">15sp</dimen>
+
+    <dimen name="activity_real_estate_edit_button_size">80dp</dimen>
+    <dimen name="activity_real_estate_edit_photo_height">250dp</dimen>
+    <dimen name="activity_real_estate_edit_content_margin">16dp</dimen>
+    <dimen name="activity_real_estate_edit_btn_margin">10dp</dimen>
 </resources>

@@ -38,11 +38,12 @@
                 android:contentDescription="@string/image_description_real_estate"
                 android:scaleType="centerCrop"
                 app:imageUrl="@{item.photo}"
+                app:error="@{@drawable/ic_photo}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:background="@android:color/darker_gray" />
+                tools:src="@drawable/ic_photo" />
 
             <TextView
                 android:id="@+id/tv_description"
