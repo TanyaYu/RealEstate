@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="fragment_real_estate_details_content_padding">16dp</dimen>
+    <dimen name="fragment_real_estate_details_inner_padding">14dp</dimen>
+    <dimen name="activity_real_estate_edit_content_margin">100dp</dimen>
+    <dimen name="activity_real_estate_edit_btn_margin">50dp</dimen>
+</resources>
