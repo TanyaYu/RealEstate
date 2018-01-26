@@ -147,11 +147,15 @@ public class RealEstateListActivity extends AppCompatActivity
                 }
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                    adapter.updateItem(dataSnapshot.getValue(RealEstate.class));
+                    RealEstate item = dataSnapshot.getValue(RealEstate.class);
+                    item.setKey(dataSnapshot.getKey());
+                    adapter.updateItem(item);
                 }
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-                    adapter.removeItem(dataSnapshot.getValue(RealEstate.class));
+                    RealEstate item = dataSnapshot.getValue(RealEstate.class);
+                    item.setKey(dataSnapshot.getKey());
+                    adapter.removeItem(item);
                 }
                 @Override
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {

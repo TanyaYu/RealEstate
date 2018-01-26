@@ -65,6 +65,7 @@
                         android:id="@+id/et_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="@{item.key == null}"
                         android:hint="@string/address_caption"
                         android:inputType="text"
                         android:text="@={item.address}" />
