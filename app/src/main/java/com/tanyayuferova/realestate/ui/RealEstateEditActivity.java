@@ -23,6 +23,8 @@ import com.tanyayuferova.realestate.databinding.ActivityRealEstateEditBinding;
 import com.tanyayuferova.realestate.entity.RealEstate;
 import com.tanyayuferova.realestate.utils.BindingAdaptersUtils;
 
+import java.util.Calendar;
+
 public class RealEstateEditActivity extends AppCompatActivity {
 
     private ActivityRealEstateEditBinding binding;
@@ -173,7 +175,9 @@ public class RealEstateEditActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == RC_PHOTO_PICKER && resultCode == RESULT_OK) {
             Uri photoUri = data.getData();
-            StorageReference photoRef = storageReference.child(photoUri.getLastPathSegment());
+            // provide unique name
+            String imageName = photoUri.getLastPathSegment() + String.valueOf(Calendar.getInstance().getTimeInMillis());
+            StorageReference photoRef = storageReference.child(imageName);
             photoRef.putFile(photoUri)
                     .addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
