@@ -85,6 +85,20 @@ public class RealEstateAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         notifyDataSetChanged();
     }
 
+    public void removeItem(RealEstate item) {
+        if(data == null)
+            return;
+        data.remove(item);
+        notifyDataSetChanged();
+    }
+
+    public void updateItem(RealEstate item) {
+        if(data == null)
+            return;
+        data.set(data.indexOf(item), item);
+        notifyDataSetChanged();
+    }
+
     public void clear() {
         data = null;
         notifyDataSetChanged();

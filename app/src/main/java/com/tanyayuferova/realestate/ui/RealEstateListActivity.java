@@ -77,6 +77,7 @@ public class RealEstateListActivity extends AppCompatActivity
                 }
             }
         };
+        firebaseAuth.addAuthStateListener(authStateListener);
 
         binding.swipeRefresh.setOnRefreshListener(this);
     }
@@ -120,19 +121,13 @@ public class RealEstateListActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onDestroy() {
+        super.onDestroy();
         if(authStateListener != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
         }
         detachDatabaseReadListener();
         adapter.clear();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        firebaseAuth.addAuthStateListener(authStateListener);
     }
 
     @Override
@@ -152,9 +147,11 @@ public class RealEstateListActivity extends AppCompatActivity
                 }
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    adapter.updateItem(dataSnapshot.getValue(RealEstate.class));
                 }
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
+                    adapter.removeItem(dataSnapshot.getValue(RealEstate.class));
                 }
                 @Override
                 public void onChildMoved(DataSnapshot dataSnapshot, String s) {
